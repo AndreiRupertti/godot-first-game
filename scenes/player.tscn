@@ -1,7 +1,17 @@
 [gd_scene format=3 uid="uid://b3hjlgmu1lcvb"]
 
 [ext_resource type="Texture2D" uid="uid://by4fbm5w5y33h" path="res://assets/sprites/knight.png" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://bhqlgaeisqull" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://blmawjmjhblco" path="res://scripts/IdleState.gd" id="2_dqkch"]
+[ext_resource type="AudioStream" uid="uid://bujhqaht62xtv" path="res://assets/sounds/hurt.wav" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://dubx0hhicr2ow" path="res://scripts/JumpState.gd" id="3_tuyoq"]
+[ext_resource type="Script" uid="uid://jig3dmgy7ryq" path="res://scripts/PlayerStateMachine.gd" id="4_dwhbt"]
+[ext_resource type="Script" uid="uid://oo0siqs1xldi" path="res://scripts/FallingState.gd" id="4_fjrip"]
+[ext_resource type="Script" uid="uid://b8rvvbwdl6twf" path="res://scripts/RunState.gd" id="5_fjrip"]
+[ext_resource type="Script" uid="uid://bms7y75rh888e" path="res://scripts/ProneState.gd" id="6_smehm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ni07"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(64, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -22,6 +32,10 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
 atlas = ExtResource("1_3vyb7")
 region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l71n6"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(96, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
 atlas = ExtResource("1_3vyb7")
@@ -91,6 +105,14 @@ region = Rect2(224, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_4ni07")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_g2els")
 }, {
 "duration": 1.0,
@@ -112,6 +134,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l71n6")
+}],
+"loop": true,
+"name": &"prone",
 "speed": 10.0
 }, {
 "frames": [{
@@ -174,14 +204,57 @@ radius = 5.0
 [node name="Player" type="CharacterBody2D" unique_id=962248471]
 z_index = 5
 collision_layer = 2
-script = ExtResource("1_g2els")
+script = ExtResource("4_dwhbt")
+
+[node name="PlayerStateMachine" type="Node" parent="." unique_id=963996682 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_dwhbt")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="PlayerStateMachine" unique_id=891092005 node_paths=PackedStringArray("player", "animated_sprite")]
+script = ExtResource("2_dqkch")
+player = NodePath("../..")
+animated_sprite = NodePath("../../AnimatedSprite2D")
+animation = "idle"
+metadata/_custom_type_script = "uid://blmawjmjhblco"
+
+[node name="Jump" type="Node" parent="PlayerStateMachine" unique_id=526873554 node_paths=PackedStringArray("player", "animated_sprite")]
+script = ExtResource("3_tuyoq")
+player = NodePath("../..")
+animated_sprite = NodePath("../../AnimatedSprite2D")
+jump_speed = 300
+animation = "jump"
+metadata/_custom_type_script = "uid://blmawjmjhblco"
+
+[node name="Falling" type="Node" parent="PlayerStateMachine" unique_id=465035481 node_paths=PackedStringArray("player", "animated_sprite")]
+script = ExtResource("4_fjrip")
+player = NodePath("../..")
+animated_sprite = NodePath("../../AnimatedSprite2D")
+animation = "falling"
+metadata/_custom_type_script = "uid://blmawjmjhblco"
+
+[node name="Run" type="Node" parent="PlayerStateMachine" unique_id=1785727102 node_paths=PackedStringArray("player", "animated_sprite")]
+script = ExtResource("5_fjrip")
+player = NodePath("../..")
+animated_sprite = NodePath("../../AnimatedSprite2D")
+animation = "run"
+metadata/_custom_type_script = "uid://blmawjmjhblco"
+
+[node name="Prone" type="Node" parent="PlayerStateMachine" unique_id=233752711 node_paths=PackedStringArray("player", "animated_sprite")]
+script = ExtResource("6_smehm")
+player = NodePath("../..")
+animated_sprite = NodePath("../../AnimatedSprite2D")
+animation = "prone"
+metadata/_custom_type_script = "uid://blmawjmjhblco"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1093370627]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"idle"
-autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1848270111]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_fjrip")
+
+[node name="harsh_fall" type="AudioStreamPlayer2D" parent="." unique_id=984185530]
+unique_name_in_owner = true
+stream = ExtResource("3_qhqgy")
