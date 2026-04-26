@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bw15otyl601n6"]
+
+[ext_resource type="Script" uid="uid://b8mpcdrnmjniy" path="res://scenes/Pickups/CoinTrail/coin_trail.gd" id="1_qv87e"]
+[ext_resource type="PackedScene" uid="uid://4y0iag1d8ktc" path="res://scenes/Pickups/Coin/coin.tscn" id="2_skj4i"]
+
+[node name="CoinTrail" type="Node" unique_id=1460990774]
+script = ExtResource("1_qv87e")
+
+[node name="Coin" parent="." unique_id=1671299575 instance=ExtResource("2_skj4i")]
+position = Vector2(0, -23)
+
+[node name="Coin3" parent="." unique_id=166067022 instance=ExtResource("2_skj4i")]
+position = Vector2(0, -6)
+
+[node name="Coin2" parent="." unique_id=243963106 instance=ExtResource("2_skj4i")]
+position = Vector2(0, -40)

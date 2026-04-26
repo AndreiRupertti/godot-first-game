@@ -1,13 +1,33 @@
 [gd_scene format=3 uid="uid://b3hjlgmu1lcvb"]
 
 [ext_resource type="Texture2D" uid="uid://by4fbm5w5y33h" path="res://assets/sprites/knight.png" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://blmawjmjhblco" path="res://scripts/IdleState.gd" id="2_dqkch"]
+[ext_resource type="Script" uid="uid://bhqlgaeisqull" path="res://scenes/Player/player.gd" id="1_qhqgy"]
+[ext_resource type="Script" uid="uid://blmawjmjhblco" path="res://scenes/Player/State/idle_state.gd" id="2_dqkch"]
 [ext_resource type="AudioStream" uid="uid://bujhqaht62xtv" path="res://assets/sounds/hurt.wav" id="3_qhqgy"]
-[ext_resource type="Script" uid="uid://dubx0hhicr2ow" path="res://scripts/JumpState.gd" id="3_tuyoq"]
-[ext_resource type="Script" uid="uid://jig3dmgy7ryq" path="res://scripts/PlayerStateMachine.gd" id="4_dwhbt"]
-[ext_resource type="Script" uid="uid://oo0siqs1xldi" path="res://scripts/FallingState.gd" id="4_fjrip"]
-[ext_resource type="Script" uid="uid://b8rvvbwdl6twf" path="res://scripts/RunState.gd" id="5_fjrip"]
-[ext_resource type="Script" uid="uid://bms7y75rh888e" path="res://scripts/ProneState.gd" id="6_smehm"]
+[ext_resource type="Script" uid="uid://dubx0hhicr2ow" path="res://scenes/Player/State/jump_state.gd" id="3_tuyoq"]
+[ext_resource type="Script" uid="uid://jig3dmgy7ryq" path="res://scenes/Player/player_machine_state.gd" id="4_dwhbt"]
+[ext_resource type="Script" uid="uid://oo0siqs1xldi" path="res://scenes/Player/State/falling_state.gd" id="4_fjrip"]
+[ext_resource type="Script" uid="uid://b8rvvbwdl6twf" path="res://scenes/Player/State/run_state.gd" id="5_fjrip"]
+[ext_resource type="Script" uid="uid://bms7y75rh888e" path="res://scenes/Player/State/prone_state.gd" id="6_smehm"]
+[ext_resource type="Script" uid="uid://bcuw2gno0cnke" path="res://scenes/Player/State/death.gd" id="8_uxo23"]
+[ext_resource type="AudioStream" uid="uid://dfgw0hedrg4u5" path="res://assets/sounds/explosion.wav" id="11_n7rn1"]
+[ext_resource type="AudioStream" uid="uid://1rsrmkvqlorg" path="res://assets/sounds/bonebreak.wav" id="12_7tfl1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7rn1"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tfl1"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxtnq"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6q27"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(96, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ni07"]
 atlas = ExtResource("1_3vyb7")
@@ -103,6 +123,23 @@ region = Rect2(224, 96, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tuyoq"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7rn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tfl1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxtnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6q27")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4ni07")
@@ -204,7 +241,7 @@ radius = 5.0
 [node name="Player" type="CharacterBody2D" unique_id=962248471]
 z_index = 5
 collision_layer = 2
-script = ExtResource("4_dwhbt")
+script = ExtResource("1_qhqgy")
 
 [node name="PlayerStateMachine" type="Node" parent="." unique_id=963996682 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_dwhbt")
@@ -215,41 +252,41 @@ script = ExtResource("2_dqkch")
 player = NodePath("../..")
 animated_sprite = NodePath("../../AnimatedSprite2D")
 animation = "idle"
-metadata/_custom_type_script = "uid://blmawjmjhblco"
 
 [node name="Jump" type="Node" parent="PlayerStateMachine" unique_id=526873554 node_paths=PackedStringArray("player", "animated_sprite")]
 script = ExtResource("3_tuyoq")
 player = NodePath("../..")
 animated_sprite = NodePath("../../AnimatedSprite2D")
-jump_speed = 300
+jump_height = 290
 animation = "jump"
-metadata/_custom_type_script = "uid://blmawjmjhblco"
 
 [node name="Falling" type="Node" parent="PlayerStateMachine" unique_id=465035481 node_paths=PackedStringArray("player", "animated_sprite")]
 script = ExtResource("4_fjrip")
 player = NodePath("../..")
 animated_sprite = NodePath("../../AnimatedSprite2D")
 animation = "falling"
-metadata/_custom_type_script = "uid://blmawjmjhblco"
 
 [node name="Run" type="Node" parent="PlayerStateMachine" unique_id=1785727102 node_paths=PackedStringArray("player", "animated_sprite")]
 script = ExtResource("5_fjrip")
+animation = "run"
 player = NodePath("../..")
 animated_sprite = NodePath("../../AnimatedSprite2D")
-animation = "run"
-metadata/_custom_type_script = "uid://blmawjmjhblco"
 
 [node name="Prone" type="Node" parent="PlayerStateMachine" unique_id=233752711 node_paths=PackedStringArray("player", "animated_sprite")]
 script = ExtResource("6_smehm")
 player = NodePath("../..")
 animated_sprite = NodePath("../../AnimatedSprite2D")
 animation = "prone"
-metadata/_custom_type_script = "uid://blmawjmjhblco"
+
+[node name="Death" type="Node" parent="PlayerStateMachine" unique_id=1389209705 node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("8_uxo23")
+animated_sprite = NodePath("../../AnimatedSprite2D")
+animation = "death"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1093370627]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"idle"
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1848270111]
 position = Vector2(0, -5)
@@ -258,3 +295,20 @@ shape = SubResource("CircleShape2D_fjrip")
 [node name="harsh_fall" type="AudioStreamPlayer2D" parent="." unique_id=984185530]
 unique_name_in_owner = true
 stream = ExtResource("3_qhqgy")
+bus = &"SFX"
+
+[node name="death_fall" type="AudioStreamPlayer2D" parent="." unique_id=1627019102]
+unique_name_in_owner = true
+stream = ExtResource("11_n7rn1")
+bus = &"SFX"
+
+[node name="bonebreak" type="AudioStreamPlayer2D" parent="." unique_id=1076013466]
+unique_name_in_owner = true
+stream = ExtResource("12_7tfl1")
+volume_db = -3.0
+pitch_scale = 0.5
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="." unique_id=42356086]
+
+[connection signal="timeout" from="Timer" to="PlayerStateMachine/Death" method="_on_timer_timeout"]
