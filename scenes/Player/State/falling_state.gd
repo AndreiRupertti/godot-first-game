@@ -4,7 +4,7 @@ class_name FallingState
 @export var player: CharacterBody2D
 @export var animated_sprite: AnimatedSprite2D
 
-const STRONG_FALL_DISTANCE = 100
+const STRONG_FALL_DISTANCE = 110
 const DEATH_FALL_DISTANCE = 260
 const AIR_SPEED = 130
 var origin_fall_pos = 0
@@ -12,7 +12,7 @@ var origin_fall_pos = 0
 # Called when the node enters the scene tree for the first time.
 func enter() -> void:
 	animated_sprite.play(animation)
-	origin_fall_pos = player.position.y
+	origin_fall_pos = abs(player.position.y)
 
 func physics_update(delta: float):
 	# Falling state: Handle air movement, apply gravity
@@ -30,10 +30,12 @@ func physics_update(delta: float):
 	if player.is_on_floor():
 		
 		var jump_distance = abs(player.position.y) - abs(origin_fall_pos)
-		print("jump_distance" + str(jump_distance))
+		
+		print("Jump dist: ", jump_distance)
+		print("STRONG_FALL_DISTANCE: ", STRONG_FALL_DISTANCE)
 		if jump_distance > DEATH_FALL_DISTANCE:
 			Transitioned.emit(self, "death")
-		elif jump_distance - origin_fall_pos > STRONG_FALL_DISTANCE:
+		elif jump_distance > STRONG_FALL_DISTANCE:
 			Transitioned.emit(self, "prone")
 		else: 
 			Transitioned.emit(self, "idle")

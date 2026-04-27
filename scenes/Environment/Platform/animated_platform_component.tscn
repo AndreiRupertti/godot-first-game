@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c7li55v108k7y"]
+
+[ext_resource type="Script" uid="uid://tsfv7rfbbw3j" path="res://scenes/Environment/Platform/animated_platform_component.gd" id="1_05v7x"]
+
+[sub_resource type="Animation" id="Animation_05v7x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_7ojbb"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vcteh"]
+_data = {
+&"RESET": SubResource("Animation_05v7x"),
+&"move": SubResource("Animation_7ojbb")
+}
+
+[node name="AnimatedPlatformComponent" type="Node" unique_id=813982688]
+script = ExtResource("1_05v7x")
+duration = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=723223669]
+libraries/ = SubResource("AnimationLibrary_vcteh")
+autoplay = &"move"
