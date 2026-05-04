@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://w5yy88qg3k6d"]
+
+[ext_resource type="PackedScene" uid="uid://x5mlffsnak44" path="res://scenes/Killzone/killzone.tscn" id="1_0jsmc"]
+[ext_resource type="Script" uid="uid://bcyuhblmtv77m" path="res://scenes/Environment/Lava/lava_pool.gd" id="1_m6bs3"]
+[ext_resource type="Texture2D" uid="uid://cesisdxiuu7kr" path="res://assets/sprites/world_tileset.png" id="2_m6bs3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jsmc"]
+size = Vector2(96, 28)
+
+[node name="LavaPool" type="Area2D" unique_id=1534641630]
+script = ExtResource("1_m6bs3")
+
+[node name="Killzone" parent="." unique_id=1511968268 node_paths=PackedStringArray("collision_shape") instance=ExtResource("1_0jsmc")]
+position = Vector2(24, -6)
+collision_shape = NodePath("CollisionShape2D")
+death_delay = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=986355272]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_0jsmc")
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=215353031]
+position = Vector2(48, -8)
+texture = ExtResource("2_m6bs3")
+region_enabled = true
+region_rect = Rect2(64, 208, 16, 32)
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=319265560]
+position = Vector2(32, -8)
+texture = ExtResource("2_m6bs3")
+region_enabled = true
+region_rect = Rect2(64, 208, 16, 32)
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1451636995]
+position = Vector2(0, -8)
+texture = ExtResource("2_m6bs3")
+region_enabled = true
+region_rect = Rect2(64, 208, 16, 32)
+
+[node name="Sprite2D7" type="Sprite2D" parent="." unique_id=1872078271]
+position = Vector2(80, -8)
+texture = ExtResource("2_m6bs3")
+region_enabled = true
+region_rect = Rect2(64, 208, 16, 32)
+
+[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=1094912309]
+position = Vector2(64, -8)
+texture = ExtResource("2_m6bs3")
+region_enabled = true
+region_rect = Rect2(64, 208, 16, 32)
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=155071072]
+position = Vector2(16, -8)
+texture = ExtResource("2_m6bs3")
+region_enabled = true
+region_rect = Rect2(64, 208, 16, 32)
+
+[connection signal="death_end" from="Killzone" to="." method="_on_killzone_death_end"]
+[connection signal="death_start" from="Killzone" to="." method="_on_killzone_death_start"]

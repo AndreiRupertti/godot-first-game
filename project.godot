@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://dhgcsx13geh8s"
 
 Music="*uid://d2p5iwthtitxx"
 GameManager="*uid://20rp4jtjat5r"
+GameEvents="*uid://i4pegqkte7ym"
 
 [editor_plugins]
 
@@ -53,6 +54,11 @@ read={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":67,"key_label":0,"unicode":99,"location":0,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://resources/text.en.translation", "res://resources/text.pt.translation")
+locale/test="pt_BR"
 
 [layer_names]
 

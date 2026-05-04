@@ -1,0 +1,6 @@
+keys,en,pt,?plural,?context
+MENU_NEW_GAME,New Game,Novo Jogo,FALSE,
+MENU_QUIT,Quit,Sair,FALSE,
+MENU_OPTIONS,Options,Configurações,FALSE,
+SIGN_BOTTOM_IS_UP,The Bottom is the only way up,Cair é a única forma de subir,TRUE,
+SIGN_MUST_GO_ON,Must Go On,Continue em frente,,

@@ -268,9 +268,9 @@ animation = "falling"
 
 [node name="Run" type="Node" parent="PlayerStateMachine" unique_id=1785727102 node_paths=PackedStringArray("player", "animated_sprite")]
 script = ExtResource("5_fjrip")
-animation = "run"
 player = NodePath("../..")
 animated_sprite = NodePath("../../AnimatedSprite2D")
+animation = "run"
 
 [node name="Prone" type="Node" parent="PlayerStateMachine" unique_id=233752711 node_paths=PackedStringArray("player", "animated_sprite")]
 script = ExtResource("6_smehm")

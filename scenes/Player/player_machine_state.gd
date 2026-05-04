@@ -6,6 +6,9 @@ var states: Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameEvents.player_died.connect(_on_death_received)
+	GameEvents.player_burn.connect(_on_burn_received)
+
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
@@ -36,3 +39,12 @@ func on_child_transitioned(state: State, new_state_name: String):
 
 	new_state.enter()
 	current_state = new_state
+
+func _on_death_received():
+	print("Player - Death recieved")
+	on_child_transitioned(current_state, "Death")
+	
+func _on_burn_received():
+	print("Player - Burn recieved")
+	# TODO: add  burn state
+	on_child_transitioned(current_state, "Prone")

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://i2mm00npgvnm"]
+
+[ext_resource type="PackedScene" uid="uid://cfcf6ts5mtugg" path="res://scenes/Objects/Sign/sign.tscn" id="1_d4abt"]
+
+[node name="HaveConfidenceSign" type="Node2D" unique_id=336724614]
+
+[node name="Sign" parent="." unique_id=2006453291 instance=ExtResource("1_d4abt")]
+text_key = "SIGN_MUST_GO_ON"

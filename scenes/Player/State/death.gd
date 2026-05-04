@@ -15,6 +15,7 @@ func enter() -> void:
 	bonebreak.play(0.25)
 	print("You died!")
 	#Engine.time_scale = 0.5
+	
 	timer.start()
 
 
