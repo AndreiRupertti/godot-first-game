@@ -1,17 +1,29 @@
 extends Control
 
 @export var player: CharacterBody2D
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	assert(player, 'No player set')
-		
-var spawnMap: Dictionary = {
+	visible = false
+
+var spawn_map: Dictionary = {
 	0: Vector2(0, 0),
-	1: Vector2(-30, -214),
-	2: Vector2(-30, -314)
-	
+	1: Vector2(-396, 1101),
+	2: Vector2(-468, 2382),
 }
 
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_F2:
+			print('pressed')
+			toggle_visibility()
+
+func toggle_visibility():
+	print('visi', visible)
+	self.visible = !visible
+
 func _on_option_button_item_selected(index: int) -> void:
-	var spawn_cords = spawnMap[index];
-	
+	var spawn_cords = spawn_map[index]
+	player.position = spawn_cords

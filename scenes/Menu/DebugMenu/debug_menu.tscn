@@ -3,16 +3,18 @@
 [ext_resource type="Script" uid="uid://cm0nqwnb3808t" path="res://scenes/Menu/DebugMenu/debug_script.gd" id="1_4fnww"]
 
 [node name="DebugMenu" type="Control" unique_id=766890044]
+z_index = 2
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_4fnww")
 
 [node name="OptionButton" type="OptionButton" parent="." unique_id=1443274681]
 layout_mode = 0
-offset_left = -77.0
-offset_top = -98.0
-offset_right = 77.0
-offset_bottom = -67.0
+offset_left = -182.0
+offset_top = -85.0
+offset_right = -89.0
+offset_bottom = -65.0
+theme_override_font_sizes/font_size = 8
 selected = 0
 item_count = 3
 popup/item_0/text = "Spanw Location"

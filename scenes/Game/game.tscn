@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://i2mm00npgvnm" path="res://scenes/Environment/Signs/MustGoOnSign.tscn" id="6_ph5vl"]
 [ext_resource type="PackedScene" uid="uid://dqa01xdajdmpt" path="res://scenes/Environment/Platform/platform.tscn" id="6_t5wam"]
 [ext_resource type="PackedScene" uid="uid://c7li55v108k7y" path="res://scenes/Environment/Platform/animated_platform_component.tscn" id="7_1p5ji"]
+[ext_resource type="PackedScene" uid="uid://pxa1vd1yjs6u" path="res://scenes/Menu/DebugMenu/debug_menu.tscn" id="9_yvoo5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_54y65")
@@ -221,6 +222,7 @@ tile_map_data = PackedByteArray("AADh/0QAAgAAAAAAAwDp/xAAAgAAAAAABgAUAA4AAgAAAAA
 tile_set = SubResource("TileSet_lbhrr")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=641519019]
+z_index = 2
 position = Vector2(0, -213)
 zoom = Vector2(3, 3)
 limit_left = -10000332
@@ -234,6 +236,14 @@ unique_name_in_owner = true
 position = Vector2(-24, -29)
 collision_layer = 1
 collision_mask = 5
+
+[node name="DebugMenu" parent="Player" unique_id=535956013 node_paths=PackedStringArray("player") instance=ExtResource("9_yvoo5")]
+z_index = 1
+offset_left = 24.0
+offset_top = 29.0
+offset_right = 24.0
+offset_bottom = 29.0
+player = NodePath("..")
 
 [node name="StartMenu" parent="." unique_id=766890044 node_paths=PackedStringArray("player", "camera") instance=ExtResource("1_5rpqn")]
 z_index = 1
@@ -264,37 +274,37 @@ start_position = Vector2(416, 48)
 end_position = Vector2(560, 48)
 
 [connection signal="body_entered" from="Tiles/Pickups/Coin" to="Tiles/Pickups/Coin" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65527" to="Tiles/Pickups/@Area2D@65527" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65528" to="Tiles/Pickups/@Area2D@65528" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65529" to="Tiles/Pickups/@Area2D@65529" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65530" to="Tiles/Pickups/@Area2D@65530" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65531" to="Tiles/Pickups/@Area2D@65531" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65532" to="Tiles/Pickups/@Area2D@65532" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65533" to="Tiles/Pickups/@Area2D@65533" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65534" to="Tiles/Pickups/@Area2D@65534" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65535" to="Tiles/Pickups/@Area2D@65535" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65536" to="Tiles/Pickups/@Area2D@65536" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65537" to="Tiles/Pickups/@Area2D@65537" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65538" to="Tiles/Pickups/@Area2D@65538" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65539" to="Tiles/Pickups/@Area2D@65539" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65540" to="Tiles/Pickups/@Area2D@65540" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65541" to="Tiles/Pickups/@Area2D@65541" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65542" to="Tiles/Pickups/@Area2D@65542" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65543" to="Tiles/Pickups/@Area2D@65543" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65544" to="Tiles/Pickups/@Area2D@65544" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65545" to="Tiles/Pickups/@Area2D@65545" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65546" to="Tiles/Pickups/@Area2D@65546" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65547" to="Tiles/Pickups/@Area2D@65547" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65548" to="Tiles/Pickups/@Area2D@65548" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65549" to="Tiles/Pickups/@Area2D@65549" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65550" to="Tiles/Pickups/@Area2D@65550" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65551" to="Tiles/Pickups/@Area2D@65551" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65552" to="Tiles/Pickups/@Area2D@65552" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65553" to="Tiles/Pickups/@Area2D@65553" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65554" to="Tiles/Pickups/@Area2D@65554" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65555" to="Tiles/Pickups/@Area2D@65555" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65556" to="Tiles/Pickups/@Area2D@65556" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65557" to="Tiles/Pickups/@Area2D@65557" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65558" to="Tiles/Pickups/@Area2D@65558" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65559" to="Tiles/Pickups/@Area2D@65559" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/Pickups/@Area2D@65560" to="Tiles/Pickups/@Area2D@65560" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127784" to="Tiles/Pickups/@Area2D@127784" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127785" to="Tiles/Pickups/@Area2D@127785" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127786" to="Tiles/Pickups/@Area2D@127786" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127787" to="Tiles/Pickups/@Area2D@127787" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127788" to="Tiles/Pickups/@Area2D@127788" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127789" to="Tiles/Pickups/@Area2D@127789" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127790" to="Tiles/Pickups/@Area2D@127790" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127791" to="Tiles/Pickups/@Area2D@127791" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127792" to="Tiles/Pickups/@Area2D@127792" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127793" to="Tiles/Pickups/@Area2D@127793" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127794" to="Tiles/Pickups/@Area2D@127794" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127795" to="Tiles/Pickups/@Area2D@127795" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127796" to="Tiles/Pickups/@Area2D@127796" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127797" to="Tiles/Pickups/@Area2D@127797" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127798" to="Tiles/Pickups/@Area2D@127798" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127799" to="Tiles/Pickups/@Area2D@127799" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127800" to="Tiles/Pickups/@Area2D@127800" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127801" to="Tiles/Pickups/@Area2D@127801" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127802" to="Tiles/Pickups/@Area2D@127802" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127803" to="Tiles/Pickups/@Area2D@127803" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127804" to="Tiles/Pickups/@Area2D@127804" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127805" to="Tiles/Pickups/@Area2D@127805" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127806" to="Tiles/Pickups/@Area2D@127806" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127807" to="Tiles/Pickups/@Area2D@127807" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127808" to="Tiles/Pickups/@Area2D@127808" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127809" to="Tiles/Pickups/@Area2D@127809" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127810" to="Tiles/Pickups/@Area2D@127810" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127811" to="Tiles/Pickups/@Area2D@127811" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127812" to="Tiles/Pickups/@Area2D@127812" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127813" to="Tiles/Pickups/@Area2D@127813" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127814" to="Tiles/Pickups/@Area2D@127814" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127815" to="Tiles/Pickups/@Area2D@127815" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127816" to="Tiles/Pickups/@Area2D@127816" method="_on_body_entered"]
+[connection signal="body_entered" from="Tiles/Pickups/@Area2D@127817" to="Tiles/Pickups/@Area2D@127817" method="_on_body_entered"]
