@@ -8,6 +8,7 @@ var states: Dictionary = {}
 func _ready() -> void:
 	GameEvents.player_died.connect(_on_death_received)
 	GameEvents.player_burn.connect(_on_burn_received)
+	GameEvents.player_respawn.connect(_on_respawn)
 
 	for child in get_children():
 		if child is State:
@@ -41,10 +42,12 @@ func on_child_transitioned(state: State, new_state_name: String):
 	current_state = new_state
 
 func _on_death_received():
-	print("Player - Death recieved")
 	on_child_transitioned(current_state, "Death")
 	
 func _on_burn_received():
-	print("Player - Burn recieved")
 	# TODO: add  burn state
 	on_child_transitioned(current_state, "Prone")
+
+func _on_respawn():
+	get_parent().position = Vector2(0,0)
+	on_child_transitioned(current_state, "Idle")

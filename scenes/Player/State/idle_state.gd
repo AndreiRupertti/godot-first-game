@@ -5,11 +5,22 @@ class_name IdleState
 @export var animated_sprite: AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
+
+# Called when the node enters the scene tree for the first time.
+var can_move = false
+
+func _ready() -> void:
+	GameEvents.game_start.connect(_on_game_start)
+
+func _on_game_start() -> void: can_move = true
+
 func enter() -> void:
 	player.velocity.x = 0
 	animated_sprite.play(animation)
 
 func physics_update(delta: float):
+	if not can_move: return
+
 	# Idle state: Stop horizontal movement, apply gravity if airborne
 	player.velocity.x = 0
 	

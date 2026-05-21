@@ -30,12 +30,14 @@ func physics_update(delta: float):
 	if player.is_on_floor():
 		
 		var jump_distance = abs(player.position.y) - abs(origin_fall_pos)
+		var is_safe =  is_safe_floor()
 		
-		print("Jump dist: ", jump_distance)
-		print("STRONG_FALL_DISTANCE: ", STRONG_FALL_DISTANCE)
-		if jump_distance > DEATH_FALL_DISTANCE:
+		print('is_safe ', is_safe)
+		print('player.get_slide_collision_count(): ', player.get_slide_collision_count())
+		
+		if jump_distance > DEATH_FALL_DISTANCE and not is_safe:
 			Transitioned.emit(self, "death")
-		elif jump_distance > STRONG_FALL_DISTANCE:
+		elif jump_distance > STRONG_FALL_DISTANCE and not is_safe:
 			Transitioned.emit(self, "prone")
 		else: 
 			Transitioned.emit(self, "idle")
@@ -51,3 +53,22 @@ func _moveX(direction: float):
 		player.velocity.x = direction * AIR_SPEED
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 0, AIR_SPEED)
+
+func is_safe_floor() -> bool:
+	
+	for i in player.get_slide_collision_count():
+		var collision = player.get_slide_collision(i)
+
+		if collision.get_collider() is TileMap:
+			var tilemap = collision.get_collider()
+
+			var position = collision.get_position()
+			var cell = tilemap.local_to_map(position)
+
+			var tile_data = tilemap.get_cell_tile_data(0, cell)
+			
+			print('tile_data = ', tile_data)
+			if tile_data:
+				return tile_data.get_custom_data("is_safe_fall")
+
+	return false

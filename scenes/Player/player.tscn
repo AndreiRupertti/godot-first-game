@@ -13,10 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://dfgw0hedrg4u5" path="res://assets/sounds/explosion.wav" id="11_n7rn1"]
 [ext_resource type="AudioStream" uid="uid://1rsrmkvqlorg" path="res://assets/sounds/bonebreak.wav" id="12_7tfl1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n7rn1"]
-atlas = ExtResource("1_3vyb7")
-region = Rect2(0, 224, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_7tfl1"]
 atlas = ExtResource("1_3vyb7")
 region = Rect2(32, 224, 32, 32)
@@ -124,9 +120,6 @@ region = Rect2(224, 96, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_tuyoq"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n7rn1")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7tfl1")
 }, {
@@ -310,5 +303,6 @@ pitch_scale = 0.5
 bus = &"SFX"
 
 [node name="Timer" type="Timer" parent="." unique_id=42356086]
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="PlayerStateMachine/Death" method="_on_timer_timeout"]

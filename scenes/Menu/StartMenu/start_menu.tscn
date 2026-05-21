@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cjfkedn3jnl18"]
+
+[ext_resource type="Script" uid="uid://bpsapn6r27nf" path="res://scenes/Menu/StartMenu/start_menu.gd" id="1_dpdhn"]
+[ext_resource type="FontFile" uid="uid://shaibcwceyuk" path="res://assets/fonts/PixelOperator8.ttf" id="2_ds8yw"]
+
+[node name="StartMenu" type="Control" unique_id=766890044]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dpdhn")
+
+[node name="StartButton" type="Button" parent="." unique_id=1099011824]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.055000003
+anchor_top = -0.36400002
+anchor_right = 0.053000003
+anchor_bottom = -0.32700002
+offset_left = -57.0
+offset_top = -58.0
+offset_right = 56.68
+offset_bottom = -34.0
+theme_override_fonts/font = ExtResource("2_ds8yw")
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="." unique_id=1226771488]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.27600002
+offset_left = -56.0
+offset_top = -25.0
+offset_right = 56.68
+offset_bottom = -1.0
+theme_override_fonts/font = ExtResource("2_ds8yw")
+text = "Quit"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

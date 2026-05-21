@@ -22,4 +22,5 @@ func enter() -> void:
 func _on_timer_timeout() -> void:
 	#Engine.time_scale = 1.0
 	print("time run out")
-	get_tree().reload_current_scene()
+	GameEvents.player_respawn.emit()
+	animated_sprite.modulate = Color(1,1,1,1)
