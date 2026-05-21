@@ -12,5 +12,4 @@ func _on_killzone_death_start() -> void:
 
 func _on_killzone_death_end() -> void:
 	#Engine.time_scale = 1
-	print("Killzione signal end")
 	GameEvents.player_died.emit()

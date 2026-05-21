@@ -1,9 +1,11 @@
 extends Node
+
 class_name State
 
-signal Transitioned
+signal state_transition
 
 @export var animation: String
+
 
 ## Called when entering this state. Override to initialize state-specific logic.
 func enter() -> void:
@@ -14,8 +16,10 @@ func enter() -> void:
 func exit() -> void:
 	pass
 
+
 func update(_delta: float):
 	pass
+
 
 func physics_update(_delta: float):
 	pass

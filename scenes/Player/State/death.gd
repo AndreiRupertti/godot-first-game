@@ -13,7 +13,6 @@ func enter() -> void:
 	animated_sprite.play(animation)
 	harsh_fall.play()
 	bonebreak.play(0.25)
-	print("You died!")
 	#Engine.time_scale = 0.5
 	
 	timer.start()
@@ -21,6 +20,5 @@ func enter() -> void:
 
 func _on_timer_timeout() -> void:
 	#Engine.time_scale = 1.0
-	print("time run out")
 	GameEvents.player_respawn.emit()
 	animated_sprite.modulate = Color(1,1,1,1)

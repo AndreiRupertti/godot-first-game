@@ -17,11 +17,9 @@ var spawn_map: Dictionary = {
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_F2:
-			print('pressed')
 			toggle_visibility()
 
 func toggle_visibility():
-	print('visi', visible)
 	self.visible = !visible
 
 func _on_option_button_item_selected(index: int) -> void:
